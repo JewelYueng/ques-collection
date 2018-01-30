@@ -186,7 +186,7 @@ export default {
     }
   },
   created () {
-    if (this.$route.params) {
+    if (!this.$route.params) {
       return this.$router.push({name: 'userinfo'})
     }
     this.result = this.$route.params.result

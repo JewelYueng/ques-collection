@@ -82,7 +82,7 @@ export default {
       if (parseInt(this.answers.product.base)) {
         let baseType = parseInt(this.answers.product.base / 10)
         let baseName = this.answers.product.base % 10
-        this.answers.product.base = 'C' + baseType + MAPS.base[baseType][baseName - 1]
+        this.answers.product.base = 'C' + baseType + MAPS.base[baseType - 1][baseName - 1]
       } else {
         this.answers.product.base = this.answers.product.baseType + this.answers.product.base
       }
@@ -94,7 +94,6 @@ export default {
           'Content-Type': 'application/json'
         }
       }).then(res => {
-        console.log(res)
         this.$router.push({name: 'result', params: {result: res.data}})
       })
     },
