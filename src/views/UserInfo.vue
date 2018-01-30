@@ -53,7 +53,7 @@ export default {
           {
             validator: (rule, value, callback) => {
               if (value === '') {
-                callback(new Error('请输入手机号码')) 
+                callback(new Error('请输入手机号码'))
               } else {
                 if (!/^1[34578]\d{9}$/.test(value)) {
                   callback(new Error('请输入格式正确的手机号码'))
