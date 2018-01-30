@@ -1,0 +1,357 @@
+{
+    "questions": [{
+        "question": "家具风格",
+        "type": "radio",
+        "can_input": true,
+        "value": "product_style",
+        "answers": [{
+            "label": "现代简约",
+            "value": 1
+        }, {
+            "label": "现代中式",
+            "value": 2
+        }, {
+            "label": "现代欧式",
+            "value": 3
+        }, {
+            "label": "简易美式",
+            "value": 4
+        }, {
+            "label": "欧式古典",
+            "value": 5
+        }, {
+            "label": "美式仿古",
+            "value": 6
+        }, {
+            "label": "中式古典",
+            "value": 7
+        }]
+    }, {
+        "question": "家具类型",
+        "type": "radio",
+        "can_input": true,
+        "value": "product_type",
+        "answers": [{
+            "label": "民用套房",
+            "value": 1
+        }, {
+            "label": "酒店套房",
+            "value": 2
+        }, {
+            "label": "儿童套房",
+            "value": 3
+        }, {
+            "label": "办公家具",
+            "value": 4
+        }, {
+            "label": "木门",
+            "value": 5
+        }, {
+            "label": "橱柜",
+            "value": 6
+        }, {
+            "label": "卫浴",
+            "value": 7
+        }, {
+            "label": "餐桌椅",
+            "value": 8
+        }, {
+            "label": "客厅家具",
+            "value": 9
+        }]
+    }, {
+        "question": "家具主要底材",
+        "type": "radio",
+        "has_sub": true,
+        "value": "product_base",
+        "answers": [{
+            "subtitle": "C1 浅木眼",
+            "can_input": true,
+            "sub_answers": [{
+                "label": "樱桃木",
+                "value": 11
+            }, {
+                "label": "桦木",
+                "value": 12
+            }, {
+                "label": "榉木",
+                "value": 13
+            }, {
+                "label": "松木",
+                "value": 14
+            }, {
+                "label": "其他",
+                "value": "C1"
+            }]
+        }, {
+            "subtitle": "C2 中深木眼",
+            "can_input": true,
+            "sub_answers": [{
+                "label": "胡桃木",
+                "value": 21
+            }, {
+                "label": "楸木",
+                "value": 22
+            }, {
+                "label": "斑马木",
+                "value": 23
+            }, {
+                "label": "花梨木",
+                "value": 24
+            }, {
+                "label": "其他",
+                "value": "C2"
+            }]
+        }, {
+            "subtitle": "C3 深木眼",
+            "can_input": true,
+            "sub_answers": [{
+                "label": "橡木",
+                "value": 31
+            }, {
+                "label": "水曲柳",
+                "value": 32
+            }, {
+                "label": "白蜡木",
+                "value": 33
+            }, {
+                "label": "桃花芯",
+                "value": 34
+            }, {
+                "label": "卡斯楠",
+                "value": 35
+            }, {
+                "label": "橡胶木",
+                "value": 36
+            }, {
+                "label": "榆木",
+                "value": 37
+            }, {
+                "label": "海棠木",
+                "value": 38
+            }, {
+                "label": "其他",
+                "value": "C3"
+            }]
+        }, {
+            "subtitle": "C4 合成材",
+            "can_input": true,
+            "sub_answers": [{
+                "label": "MDF中纤板",
+                "value": 41
+            }, {
+                "label": "三聚氰胺板",
+                "value": 42
+            }, {
+                "label": "其他",
+                "value": "C4"
+            }]
+        }]
+    }, {
+        "question": "涂料月用量",
+        "can_input": false,
+        "type": "radio",
+        "value": "painting_amount",
+        "answers": [{
+                "label": "用量≤5万",
+                "value": 1
+            },
+            {
+                "label": "5万﹤用量≤ 10万 ",
+                "value": 2
+            }, {
+                "label": "10万﹤用量≤ 20万 ",
+                "value": 3
+            }, {
+                "label": "20万﹤用量≤ 50万 ",
+                "value": 4
+            }, {
+                "label": "50万以上",
+                "value": 5
+            }
+        ]
+    }, {
+        "question": "涂装效果",
+        "can_input": false,
+        "pointer": true,
+        "type": "radio",
+        "answers": [{
+            "label": "透明开放",
+            "value": 1,
+            "pointer": [0, 1, 2]
+        }, {
+            "label": "实色开放",
+            "value": 2,
+            "pointer": [3, 4, 5]
+        }, {
+            "label": "透明封闭",
+            "pointer": [6, 7, 8, 9, 10],
+            "value": 3
+        }, {
+            "label": "实色封闭",
+            "value": 4,
+            "pointer": [11, 12, 13, 14, 15]
+        }, {
+            "label": "透明仿古",
+            "value": 5,
+            "pointer": [16, 17]
+        }, {
+            "label": "实色仿古",
+            "value": 6,
+            "pointer": [18, 19]
+        }]
+
+    }, {
+        "question": "底面漆搭配",
+        "can_input": false,
+        "pointer": true,
+        "pointed": true,
+        "type": "radio",
+        "value": "painting_effect",
+        "answers": [{
+            "label": "K1：PU底漆+PU面漆",
+            "value": 1,
+            "pointer": [0, 1, 2, 3, 4, 5, 6]
+        }, {
+            "label": "K2：NC底漆+NC面漆",
+            "value": 2,
+            "pointer": [0, 1, 2, 3, 4, 5, 6]
+        }, {
+            "label": "K3：PU底漆+NC面漆",
+            "value": 3,
+            "pointer": [0, 1, 2, 3, 4, 5, 6]
+        }, {
+            "label": "K4：PU底漆+PU面漆",
+            "value": 4,
+            "pointer": [0, 1, 2, 3, 4, 5, 6]
+        }, {
+            "label": "K5：NC底漆+NC面漆",
+            "value": 5,
+            "pointer": [0, 1, 2, 3, 4, 5, 6]
+        }, {
+            "label": "K6：PU底漆+NC面漆",
+            "value": 6,
+            "pointer": [0, 1, 2, 3, 4, 5, 6]
+        }, {
+            "label": "Q1：PU底漆+PU面漆",
+            "value": 7,
+            "pointer": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+        }, {
+            "label": "Q2：UPE底漆+PU面漆",
+            "value": 8,
+            "pointer": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+        }, {
+            "label": "Q3：UV底漆+PU面漆",
+            "value": 9,
+            "pointer": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+        }, {
+            "label": "Q4：PU底漆+NC面漆",
+            "value": 10,
+            "pointer": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+        }, {
+            "label": "Q5：NC底漆+NC面漆",
+            "value": 11,
+            "pointer": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+        }, {
+            "label": "Q6：PU底漆+PU面漆",
+            "value": 12,
+            "pointer": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+        }, {
+            "label": "Q7：UPE底漆+PU面漆",
+            "value": 13,
+            "pointer": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+        }, {
+            "label": "Q8：UV底漆+PU面漆",
+            "value": 14,
+            "pointer": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+        }, {
+            "label": "Q9：PU底漆+NC面漆",
+            "value": 15,
+            "pointer": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+        }, {
+            "label": "Q10：NC底漆+NC面漆",
+            "value": 16,
+            "pointer": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+        }, {
+            "label": "F1：PU底漆+PU面漆",
+            "value": 17,
+            "pointer": [0, 1, 2, 3, 4, 5, 6]
+        }, {
+            "label": "F2：NC底漆+NC面漆",
+            "value": 18,
+            "pointer": [0, 1, 2, 3, 4, 5, 6]
+        }, {
+            "label": "F3：PU底漆+PU面漆",
+            "value": 19,
+            "pointer": [0, 1, 2, 3, 4, 5, 6]
+        }, {
+            "label": "F4：NC底漆+NC面漆",
+            "value": 20,
+            "pointer": [0, 1, 2, 3, 4, 5, 6]
+        }]
+    }, {
+        "question": "光泽",
+        "type": "checkbox",
+        "can_input": false,
+        "value": "painting_luster",
+        "pointed": true,
+        "answers": [{
+            "label": "1分光",
+            "value": 256
+        }, {
+            "label": "2分光",
+            "value": 128
+        }, {
+            "label": "3分光",
+            "value": 64
+        }, {
+            "label": "4分光",
+            "value": 32
+        }, {
+            "label": "5分光",
+            "value": 16
+        }, {
+            "label": "6分光",
+            "value": 8
+        }, {
+            "label": "7分光",
+            "value": 4
+        }, {
+            "label": "8分光",
+            "value": 2
+        }, {
+            "label": "亮光",
+            "value": 1
+        }]
+    }, {
+        "question": "水性漆涂装工件类型",
+        "can_input": false,
+        "type": "radio",
+        "value": "painting_workpiece",
+        "answers": [{
+            "label": "平面（如板式家具等）",
+            "value": 1
+        }, {
+            "label": "简单造型（如木门、护墙板等，有沟槽、线条或简单的雕刻）",
+            "value": 2
+        }, {
+            "label": "组装成型（如实木家具、餐椅等）",
+            "value": 3
+        }, {
+            "label": "异形件（如楼梯柱、椅子腿或有复杂雕刻的部件等）",
+            "value": 4
+        }]
+    }, {
+        "question": "您希望水性漆采用哪种涂装方式",
+        "type": "radio",
+        "can_input": false,
+        "value": "painting_program",
+        "answers": [{
+            "label": "手工喷涂",
+            "value": 0
+        }, {
+            "label": "设备自动化涂装",
+            "value": 1
+        }]
+    }]
+}
