@@ -175,6 +175,7 @@
         "can_input": false,
         "pointer": true,
         "type": "radio",
+        "value": "painting_type",
         "answers": [{
             "label": "透明开放",
             "value": 1,
