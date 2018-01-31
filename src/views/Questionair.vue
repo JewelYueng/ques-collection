@@ -88,7 +88,7 @@ export default {
       }
       axios({
         method: 'post',
-        url: 'http://localhost:5000/addClient',
+        url: 'http://127.0.0.1:5000/addClient',
         data: {...this.answers, ...this.$route.params},
         headers: {
           'Content-Type': 'application/json'
