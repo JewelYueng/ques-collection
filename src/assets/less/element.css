@@ -7,7 +7,8 @@
     height: 20px;
 }
 
-.el-radio__label {
+.el-radio__label,
+.el-checkbox__label {
     font-size: 18px;
 }
 
@@ -35,4 +36,16 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
+}
+
+.el-checkbox-group {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.el-button {
+    font-size: 18px;
 }
