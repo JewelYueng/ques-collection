@@ -18,7 +18,7 @@
             <el-input v-model="inputValue" v-if="['C1', 'C2', 'C3', 'C4'].includes(currentAnswer)"></el-input>
           </div>
           <div class="pointed-container container" v-if="currentQuestion.pointed">
-            <el-radio v-model="currentAnswer" :key="index" border v-for="index in lastQuestion.pointer" :label="currentQuestion.answers[index].value" class="custom-radio">
+            <el-radio v-model="currentAnswer" :key="index" border v-for="index in typeQuestion.pointer" :label="currentQuestion.answers[index].value" class="custom-radio">
               {{currentQuestion.answers[index].label}}
             </el-radio>
           </div>
@@ -33,14 +33,14 @@
         <div v-if="currentQuestion.type === 'checkbox'">
           <div class="normal-container container" v-if="!currentQuestion.pointed">
             <el-checkbox-group v-model="multiAns">
-              <el-checkbox border v-for="ans in currentQuestion.answers" :key="ans.value"  :label="ans.value">
+              <el-checkbox border v-for="ans in currentQuestion.answers" :key="ans.value"  :label="ans.value" class="custom-checkbox">
                 {{ans.label}}
               </el-checkbox>
             </el-checkbox-group>
           </div>
           <div class="pointed-container container" v-else>
             <el-checkbox-group v-model="multiAns">
-              <el-checkbox border v-for="index in lastQuestion.pointer" :key="index"  :label="currentQuestion.answers[index].value">
+              <el-checkbox border class="custom-checkbox" v-for="index in effectQuestion.pointer" :key="index"  :label="currentQuestion.answers[index].value">
                 {{currentQuestion.answers[index].label}}
               </el-checkbox>
             </el-checkbox-group>
@@ -69,12 +69,15 @@ export default {
       multiAns: [],
       currentAnswer: '',
       inputValue: '',
-      lastQuestion: '',
+      effectQuestion: {},
+      typeQuestion: {},
       answers: {}
     }
   },
   created () {
-    console.log(this.questions.length)
+    if (!this.$route.params.clientInfo) {
+      this.$router.push({name: 'userinfo'})
+    }
   },
   methods: {
     sendAnswers () {
@@ -115,8 +118,11 @@ export default {
       }
     },
     goToNext () {
-      if (this.currentQuestion.pointer) {
-        this.lastQuestion = this.currentQuestion.answers[this.currentAnswer - 1]
+      if (this.currentQuestion.value === 'painting_type') {
+        this.typeQuestion = this.currentQuestion.answers[this.currentAnswer - 1]
+      }
+      if (this.currentQuestion.value === 'painting_effect') {
+        this.effectQuestion = this.currentQuestion.answers[this.currentAnswer - 1]
       }
       this.popToAnswsers()
       if (this.currentQuestion.value === 'product_base') {
@@ -200,5 +206,12 @@ export default {
 .custom-radio {
   flex: 0 0 30%;
   margin: 10px;
+}
+.custom-checkbox {
+  width: 30%;
+  margin: 10px;
+  height: 50px;
+  line-height: 50px;
+  padding: 0;
 }
 </style>
