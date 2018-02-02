@@ -6,11 +6,25 @@
         <el-input v-model='userInfo.company'></el-input>
       </el-form-item>
       <el-form-item label='所在省份' prop="province">
-            <el-input v-model='userInfo.province'></el-input>
-          </el-form-item>
+        <el-select v-model="userInfo.province" @change="changePro" placeholder="请选择省份">
+          <el-option
+            v-for="item in provinces"
+            :key="item.ProID"
+            :label="item.name"
+            :value="item.name">
+          </el-option>
+        </el-select>
+      </el-form-item>
       <el-form-item label='所在城市' prop="city">
-            <el-input v-model='userInfo.city'></el-input>
-          </el-form-item>
+        <el-select v-model="userInfo.city" placeholder="请选择城市">
+          <el-option
+            v-for="item in citys"
+            :key="item.CityID"
+            :label="item.name"
+            :value="item.name">
+          </el-option>
+        </el-select>
+      </el-form-item>
       <el-form-item label='联系人' prop="name">
         <el-input v-model='userInfo.name'></el-input>
       </el-form-item>
@@ -29,19 +43,23 @@
 </template>
 
 <script>
+import CITYS from '../constants/city'
+
 export default {
   name: 'user-info',
   data () {
     return {
       userInfo: {
-        company: '',
+        company: '测试企业',
         province: '',
         city: '',
-        name: '',
-        position: '',
-        mobile: '',
+        name: '测试联系人',
+        position: '测试岗位',
+        mobile: '13511111111',
         landline: ''
       },
+      provinces: CITYS,
+      citys: [],
       rules: {
         company: [{ required: true, message: '企业名称不能为空' }],
         city: [{ required: true, message: ' 城市不能为空' }],
@@ -66,17 +84,16 @@ export default {
           }
         ],
         landline: [
-          { required: true, message: '固定电话不能为空' },
           {
             validator: (rule, value, callback) => {
-              if (value === '') {
-                callback(new Error('请输入固定电话'))
-              } else {
+              if (value !== '') {
                 if (!/^(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}$/.test(value)) {
                   callback(new Error('请输入格式正确的固定电话'))
                 } else {
                   callback()
                 }
+              } else {
+                callback ()
               }
             },
             triiger: 'blur,change'
@@ -86,6 +103,12 @@ export default {
     }
   },
   methods: {
+    changePro (val) {
+      this.userInfo.city = ''
+      this.citys = this.provinces.find(p => {
+        return p.name === val
+      }).citys
+    },
     goToQuestions () {
       this.$refs['form'].validate(valid => {
         if (valid) {
@@ -97,6 +120,11 @@ export default {
           this.$message.warning('请完成所有信息填写')
         }
       })
+    }
+  },
+  created () {
+    if (this.$route.params.userInfo) {
+      this.userInfo = this.$route.params.userInfo
     }
   }
 }
