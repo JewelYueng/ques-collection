@@ -48,7 +48,8 @@
         </div>
       </div>
       <div class="controller">
-        <el-button type="primary" icon="el-icon-arrow-left" :disabled="currentIndex === 0" @click="goToLast">上一题</el-button>
+        <el-button type="primary" icon="el-icon-arrow-left" v-if="currentIndex !== 0" @click="goToLast">上一题</el-button>
+        <el-button v-else @click="goToUser">返回用户信息</el-button>
         <el-button type="primary" v-if="currentIndex !== questions.length - 1" @click="goToNext" :disabled="!canGoNext">下一题<i class="el-icon-arrow-right el-icon--right"></i></el-button>
         <el-button type="primary" v-else @click="sendAnswers">提交问卷</el-button>
       </div>
@@ -80,6 +81,9 @@ export default {
     }
   },
   methods: {
+    goToUser () {
+      this.$router.push({name: 'userinfo', params: {userInfo: this.$route.params.clientInfo}})
+    },
     sendAnswers () {
       this.goToNext()
       if (parseInt(this.answers.product.base)) {
@@ -91,7 +95,7 @@ export default {
       }
       axios({
         method: 'post',
-        url: 'http://107.170.200.116:80/addClient',
+        url: 'http://39.108.141.75:5000/addClient',
         data: {...this.answers, ...this.$route.params},
         headers: {
           'Content-Type': 'application/json'
