@@ -93,7 +93,7 @@ export default {
                   callback()
                 }
               } else {
-                callback ()
+                callback()
               }
             },
             triiger: 'blur,change'
