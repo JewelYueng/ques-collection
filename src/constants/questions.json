@@ -81,7 +81,8 @@
                 "value": 14
             }, {
                 "label": "其他",
-                "value": "C1"
+                "value": "C1",
+                "type": "input"
             }]
         }, {
             "subtitle": "C2 中深木眼",
@@ -100,7 +101,8 @@
                 "value": 24
             }, {
                 "label": "其他",
-                "value": "C2"
+                "value": "C2",
+                "type": "input"
             }]
         }, {
             "subtitle": "C3 深木眼",
@@ -131,7 +133,8 @@
                 "value": 38
             }, {
                 "label": "其他",
-                "value": "C3"
+                "value": "C3",
+                "type": "input"
             }]
         }, {
             "subtitle": "C4 合成材",
@@ -144,7 +147,8 @@
                 "value": 42
             }, {
                 "label": "其他",
-                "value": "C4"
+                "value": "C4",
+                "type": "input"
             }]
         }]
     }, {
