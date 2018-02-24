@@ -10,12 +10,14 @@
             <div v-for="(ans, index) in currentQuestion.answers" :key="index" class="sub-container">
               <h5>{{ans.subtitle}}</h5>
               <div class="radios-container">
-                <el-radio border v-for="subAns in ans.sub_answers" :key="subAns.value" v-model="currentAnswer" :label="subAns.value" class="custom-radio">
-                  {{subAns.label}}
-                </el-radio>
+                <div v-for="subAns in ans.sub_answers" :key="subAns.value" class="radio-container">
+                  <el-radio border v-model="currentAnswer" :label="subAns.value" class="custom-radio">
+                    {{subAns.label}}
+                  </el-radio>
+                  <el-input v-model="inputValue" v-if="showInput(subAns.value)"></el-input>
+                </div>
               </div>
             </div>
-            <el-input v-model="inputValue" v-if="['C1', 'C2', 'C3', 'C4'].includes(currentAnswer)"></el-input>
           </div>
           <div class="pointed-container container" v-if="currentQuestion.pointed">
             <el-radio v-model="currentAnswer" :key="index" border v-for="index in typeQuestion.pointer" :label="currentQuestion.answers[index].value" class="custom-radio">
@@ -95,13 +97,14 @@ export default {
       }
       axios({
         method: 'post',
-        url: 'http://39.108.141.75:5000/addClient',
+        // url: 'http://39.108.141.75:5000/addClient',
+        url: 'http://localhost:5000/addClient',
         data: {...this.answers, ...this.$route.params},
         headers: {
           'Content-Type': 'application/json'
         }
       }).then(res => {
-        this.$router.push({name: 'result', params: {result: res.data}})
+        this.$router.push({name: 'result', query: {pid: res.data.pid}})
       })
     },
     initAns () {
@@ -144,6 +147,9 @@ export default {
     goToLast () {
       this.initAns()
       this.currentIndex--
+    },
+    showInput (value) {
+      return this.currentAnswer === value && ['C1', 'C2', 'C3', 'C4'].includes(this.currentAnswer)
     }
   },
   computed: {
@@ -191,10 +197,25 @@ export default {
   flex-wrap: wrap;
   padding: 20px 50px;
 }
-.radios-container {
+.radios-container{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+.radio-container {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  flex: 0 0 140px;
+  .custom-radio {
+    flex: 0 0 140px;
+  }
+  .el-input {
+    flex: 0 0 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 .sub-container {
   width: 100%;
