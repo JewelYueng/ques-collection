@@ -6,7 +6,7 @@
     </div>
     <h4>Part1: 油改水基本需求信息</h4>
     <div class="info-container client">
-      <h5>客户名称: {{result.customer.company}}</h5>
+      <h5>客户名称: {{result.customer.company || ''}}</h5>
       <h5>联系人: {{result.customer.name}}</h5>
       <h5>联系电话: {{result.customer.phone}}</h5>
     </div>
@@ -69,21 +69,30 @@
     </div>
     <div class="info-container">
       <p>如需进一步了解咨询请与如下人员取得联系！</p>
-      <p>办  事  处：XXX</p>
-      <p>联  系  人：XXX</p>
+      <p>办 事 处：XXX</p>
+      <p>联 系 人：XXX</p>
       <p>手机号码：139XXXXXXXX</p>
     </div>
     <div class="controller">
       <el-button type="primary" @click="print" icon="el-icon-printer">打印结果</el-button>
-      <el-button @click="goToIndex" >返回首页</el-button>
+      <el-button @click="goToIndex">返回首页</el-button>
     </div>
   </div>
 </template>
 
 <script>
-import { PAINTING_RESULT, PAINTING_COLUMN, DRY_PROGRAM, DEVICE_PROGRAM, DEVICE_COLUMNS, DRY_COLUMNS, MAPS } from '../constants/infomation'
+import {
+  PAINTING_RESULT,
+  PAINTING_COLUMN,
+  DRY_PROGRAM,
+  DEVICE_PROGRAM,
+  DEVICE_COLUMNS,
+  DRY_COLUMNS,
+  MAPS
+} from '../constants/infomation'
 import DataTable from '@components/DataTable'
-import {join} from 'lodash'
+import { join } from 'lodash'
+import axios from 'axios'
 // const MOCK_RESULT = {
 //   proCode: '18013035',
 //   customer: {
@@ -126,20 +135,23 @@ export default {
     DataTable
   },
   methods: {
-    print () {
-    },
+    print () {},
     goToIndex () {
-      this.$router.push({name: 'userinfo'})
+      this.$router.push({ name: 'userinfo' })
     }
   },
   computed: {
     productStyle () {
       let styles = [1, 2, 3, 4, 5, 6, 7, 8]
-      return styles.includes(parseInt(this.result.product.style)) ? MAPS.style[parseInt(this.result.product.style) - 1] : this.result.product.style
+      return styles.includes(parseInt(this.result.product.style))
+        ? MAPS.style[parseInt(this.result.product.style) - 1]
+        : this.result.product.style
     },
     productType () {
       let types = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-      return types.includes(parseInt(this.result.product.type)) ? MAPS.type[parseInt(this.result.product.type) - 1] : this.result.product.type
+      return types.includes(parseInt(this.result.product.type))
+        ? MAPS.type[parseInt(this.result.product.type) - 1]
+        : this.result.product.type
     },
     productEffect () {
       let effect = parseInt(this.result.product.effect)
@@ -186,64 +198,76 @@ export default {
     }
   },
   created () {
-    if (!this.$route.params) {
-      return this.$router.push({name: 'userinfo'})
+    if (!this.$route.query.pid) {
+      return this.$router.push({ name: 'userinfo' })
     }
-    this.result = this.$route.params.result
-    switch (this.result.product.effect) {
-      case 1:
-      case 2:
-      case 3:
-        this.paintingTable.data = this.paintingRes['R1']
-        break
-      case 4:
-      case 5:
-      case 6:
-        this.paintingTable.data = this.paintingRes['R2']
-        break
-      case 7:
-      case 8:
-        this.paintingTable.data = this.paintingRes['R3']
-        break
-      case 9:
-        this.paintingTable.data = this.paintingRes['R4']
-        break
-      case 10:
-      case 11:
-        this.paintingTable.data = this.paintingRes['R5']
-        break
-      case 12:
-      case 13:
-        this.paintingTable.data = this.paintingRes['R6']
-        break
-      case 14:
-        this.paintingTable.data = this.paintingRes['R7']
-        break
-      case 15:
-      case 16:
-        this.paintingTable.data = this.paintingRes['R8']
-        break
-      case 17:
-      case 18:
-        this.paintingTable.data = this.paintingRes['R9']
-        break
-      case 19:
-      case 20:
-        this.paintingTable.data = this.paintingRes['R10']
-    }
-    this.paintingTable.data.map(p => {
-      p.base = this.result.product.base
+    axios({
+      method: 'post',
+      url: 'http://localhost:5000/client',
+      data: { pid: this.$route.query.pid },
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => {
+      this.result = res.data
+      switch (this.result.product.effect) {
+        case 1:
+          this.paintingTable.data = this.paintingRes['R1']
+          break
+        case 2:
+        case 3:
+          this.paintingTable.data = this.paintingRes['R2']
+          break
+        case 4:
+          this.paintingTable.data = this.paintingRes['R3']
+          break
+        case 5:
+        case 6:
+          this.paintingTable.data = this.paintingRes['R4']
+          break
+        case 7:
+        case 8:
+          this.paintingTable.data = this.paintingRes['R5']
+          break
+        case 9:
+          this.paintingTable.data = this.paintingRes['R6']
+          break
+        case 10:
+        case 11:
+          this.paintingTable.data = this.paintingRes['R7']
+          break
+        case 12:
+        case 13:
+          this.paintingTable.data = this.paintingRes['R8']
+          break
+        case 14:
+          this.paintingTable.data = this.paintingRes['R9']
+          break
+        case 15:
+        case 16:
+          this.paintingTable.data = this.paintingRes['R10']
+          break
+        case 17:
+        case 18:
+          this.paintingTable.data = this.paintingRes['R11']
+          break
+        case 19:
+        case 20:
+          this.paintingTable.data = this.paintingRes['R12']
+      }
+      this.paintingTable.data.map(p => {
+        p.base = this.result.product.base
+      })
+      if (this.result.product.program === 0) {
+        this.programTable.data = DRY_PROGRAM
+        this.programTable.columns = Object.freeze(DRY_COLUMNS)
+      } else {
+        let workpiece = 'S' + this.result.product.workpiece
+        this.programTable.data = DEVICE_PROGRAM[workpiece]
+        this.programTable.columns = Object.freeze(DEVICE_COLUMNS)
+      }
     })
-    if (this.result.product.program === 0) {
-      this.programTable.data = DRY_PROGRAM
-      this.programTable.columns = Object.freeze(DRY_COLUMNS)
-    } else {
-      let workpiece = 'S' + this.result.product.workpiece
-      this.programTable.data = DEVICE_PROGRAM[workpiece]
-      this.programTable.columns = Object.freeze(DEVICE_COLUMNS)
-    }
   }
-
 }
 </script>
 <style lang="less" scoped>
